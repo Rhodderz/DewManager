@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2037
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DewManager", "DewManager\DewManager.csproj", "{DA90A400-C5E8-4FC7-B9ED-BD07ED4A136E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DA90A400-C5E8-4FC7-B9ED-BD07ED4A136E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA90A400-C5E8-4FC7-B9ED-BD07ED4A136E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA90A400-C5E8-4FC7-B9ED-BD07ED4A136E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA90A400-C5E8-4FC7-B9ED-BD07ED4A136E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F932132A-935F-40F1-A4C2-24D3A63D2DF9}
+	EndGlobalSection
+EndGlobal

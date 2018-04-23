@@ -35,6 +35,34 @@ namespace DewManager.Configs
                 ConfigLines.FirstOrDefault(dewConfigLine => dewConfigLine.Key == "Server.VetoJsonPath");
             return string.Join(" ", dewritoConfigLine.Values);
         }
+        
+        public string getServerMSG()
+        {
+            DewritoConfigLine dewritoConfigLine =
+                ConfigLines.FirstOrDefault(dewConfigLine => dewConfigLine.Key == "Server.Message");
+            return string.Join(" ", dewritoConfigLine.Values).Trim('"');
+        }
+        
+        public string getServerPassword()
+        {
+            DewritoConfigLine dewritoConfigLine =
+                ConfigLines.FirstOrDefault(dewConfigLine => dewConfigLine.Key == "Server.Password");
+            return string.Join(" ", dewritoConfigLine.Values).Trim('"');
+        }
+        
+        public string getRCONPassword()
+        {
+            DewritoConfigLine dewritoConfigLine =
+                ConfigLines.FirstOrDefault(dewConfigLine => dewConfigLine.Key == "Server.RconPassword");
+            return string.Join(" ", dewritoConfigLine.Values).Trim('"');
+        }
+        
+        public string getPlayerName()
+        {
+            DewritoConfigLine dewritoConfigLine =
+                ConfigLines.FirstOrDefault(dewConfigLine => dewConfigLine.Key == "Player.Name");
+            return string.Join(" ", dewritoConfigLine.Values).Trim('"');
+        }
 
         public int getRCONPort()
         {
@@ -66,6 +94,14 @@ namespace DewManager.Configs
                 ConfigLines.FirstOrDefault(dewConfigLine => dewConfigLine.Key == "Server.SignalServerPort");
 
             return int.Parse(dewritoConfigLine.Values[0].Trim('"'));
+        }
+
+        public bool getServerAnnounce()
+        {
+            DewritoConfigLine dewritoConfigLine =
+                ConfigLines.FirstOrDefault(dewConfigLine => dewConfigLine.Key == "Server.ShouldAnnounce");
+
+            return int.Parse(dewritoConfigLine.Values[0].Trim('"')) != 0;
         }
     }
 }

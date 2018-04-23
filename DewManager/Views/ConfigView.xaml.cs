@@ -32,8 +32,19 @@ namespace DewManager.Views
             gamePort_tb.Value = config.DewritoConfig.getGamePort();
             signalPort_tb.Value = config.DewritoConfig.getSignalServerPort();
             
-            //Server Name info
+            //Server info
             serverName_tb.Text = config.DewritoConfig.getServerName();
+            serverMSG_tb.Text = config.DewritoConfig.getServerMSG();
+            rconPWD_tb.Text = config.DewritoConfig.getRCONPassword();
+            playerName_tb.Text = config.DewritoConfig.getPlayerName();
+            announce_chk.IsChecked = config.DewritoConfig.getServerAnnounce();
+            
+            //Setup Maps list
+            availableMaps_lb.ItemsSource = config.AvailableMaps;
+            defaultMaps_lb.ItemsSource = config.VotingConfig.Maps;
+            
+            //Setup Gametypes
+            availableGameTypes_lv.ItemsSource = config.VotingConfig.Types;
         }
     }
 }

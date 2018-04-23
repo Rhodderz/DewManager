@@ -82,7 +82,7 @@ namespace DewManager.Configs
         
         public ConfigBundle getConfigBundle(int index)
         {
-            return new ConfigBundle(index, _dewritoPrefs[index], _votingConfigs[index]);
+            return new ConfigBundle(index, _dewritoPrefs[index], _votingConfigs[index], _objectLocations);
         }
     }
 }

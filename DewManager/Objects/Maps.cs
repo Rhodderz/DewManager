@@ -8,8 +8,15 @@ namespace DewManager
 {
     public class Maps
     {
+        //Seperate class than the rest of the loaders as maybe oneday i can get more info from the maps
+        
         private ObjectLocations _objLocations;
         private ArrayList _mapsList;
+
+        public Maps()
+        {
+            _mapsList = new ArrayList();
+        }
 
         public Maps(ObjectLocations objLocations)
         {

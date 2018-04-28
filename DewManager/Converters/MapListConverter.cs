@@ -25,7 +25,6 @@ namespace DewManager.Converters
             {
                 maps.Add(JsonConvert.DeserializeObject<Map>(jToken.ToString()));
             }
-            
 
             return maps;
         }

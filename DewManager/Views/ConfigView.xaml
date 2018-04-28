@@ -5,6 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+    xmlns:dd="clr-namespace:GongSolutions.Wpf.DragDrop;assembly=GongSolutions.Wpf.DragDrop"
     mc:Ignorable="d"
     Height="536.175">
     <TextBlock x:Name="ConfigIndex">Hello World</TextBlock>
@@ -65,10 +66,11 @@
                     <DockPanel>
                         <StackPanel Orientation="Vertical" Width="130" DockPanel.Dock="Left">
                             <Label Content="Available Maps" Target="{Binding ElementName=availableMaps_lb}"
-                                   FontWeight="Bold" />
+                                   FontWeight="Bold"/>
                             <ListBox x:Name="availableMaps_lb" ItemsSource="{Binding}"
                                      ScrollViewer.VerticalScrollBarVisibility="Visible" Height="340"
-                                     ScrollViewer.CanContentScroll="True">
+                                     ScrollViewer.CanContentScroll="True"
+                                     dd:DragDrop.IsDragSource="True">
                                 <ListBox.ItemTemplate>
                                     <DataTemplate>
                                         <TextBlock Text="{Binding Name}" />
@@ -81,7 +83,12 @@
                                    FontWeight="Bold" />
                             <ListBox x:Name="defaultMaps_lb" ItemsSource="{Binding}" Height="340"
                                      ScrollViewer.VerticalScrollBarVisibility="Visible"
-                                     ScrollViewer.CanContentScroll="True">
+                                     ScrollViewer.CanContentScroll="True"
+                                     AllowDrop="True" 
+                                     dd:DragDrop.IsDropTarget="True"
+                                     dd:DragDrop.DropHandler="{Binding}"
+                                     Drop="DefaultMaps_Drop"
+                                     DragOver="DefaultMaps_DragOver">
                                 <ListBox.ItemTemplate>
                                     <DataTemplate>
                                         <Grid>
@@ -90,7 +97,7 @@
                                             </StackPanel>
                                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                                                 <Button Content="X" Width="25" Padding="0" BorderThickness="0"
-                                                        Click="DeleteDefaultMapItem_OnClick"/>
+                                                        Click="DeleteMapItem_OnClick"/>
                                             </StackPanel>
                                         </Grid>
                                     </DataTemplate>
@@ -117,10 +124,19 @@
                                             </ListView.ItemTemplate>
                                         </ListView>
                                         <Button x:Name="addCommand" Content="+" />
-                                        <ListView ItemsSource="{Binding SpecificMaps}">
+                                        <ListView ItemsSource="{Binding SpecificMaps}" AllowDrop="True" 
+                                                  Name="specificMaps_lb">
                                             <ListView.ItemTemplate>
                                                 <DataTemplate>
-                                                    <TextBlock Text="{Binding Name}" />
+                                                    <Grid>
+                                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                                                            <TextBlock Text="{Binding Name}" />
+                                                        </StackPanel>
+                                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                                            <Button Content="X" Width="25" Padding="0" BorderThickness="0"
+                                                                    Click="DeleteMapItem_OnClick"/>
+                                                        </StackPanel>
+                                                    </Grid>
                                                 </DataTemplate>
                                             </ListView.ItemTemplate>
                                         </ListView>

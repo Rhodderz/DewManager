@@ -5,10 +5,10 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
-    xmlns:dd="clr-namespace:GongSolutions.Wpf.DragDrop;assembly=GongSolutions.Wpf.DragDrop"
     mc:Ignorable="d"
     Height="536.175">
     <TextBlock x:Name="ConfigIndex">Hello World</TextBlock>
+    
     <ScrollViewer ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Disabled">
         <StackPanel>
             <StackPanel Orientation="Horizontal">
@@ -70,7 +70,7 @@
                             <ListBox x:Name="availableMaps_lb" ItemsSource="{Binding}"
                                      ScrollViewer.VerticalScrollBarVisibility="Visible" Height="340"
                                      ScrollViewer.CanContentScroll="True"
-                                     dd:DragDrop.IsDragSource="True">
+                                     PreviewMouseLeftButtonDown="AvailableMaps_dragPreview">
                                 <ListBox.ItemTemplate>
                                     <DataTemplate>
                                         <TextBlock Text="{Binding Name}" />
@@ -84,11 +84,9 @@
                             <ListBox x:Name="defaultMaps_lb" ItemsSource="{Binding}" Height="340"
                                      ScrollViewer.VerticalScrollBarVisibility="Visible"
                                      ScrollViewer.CanContentScroll="True"
-                                     AllowDrop="True" 
-                                     dd:DragDrop.IsDropTarget="True"
-                                     dd:DragDrop.DropHandler="{Binding}"
-                                     Drop="DefaultMaps_Drop"
-                                     DragOver="DefaultMaps_DragOver">
+                                     IsSynchronizedWithCurrentItem="True"
+                                     AllowDrop="True"
+                                     Drop="defaultMaps_drop">
                                 <ListBox.ItemTemplate>
                                     <DataTemplate>
                                         <Grid>
@@ -108,7 +106,7 @@
                 </GroupBox>
                 <GroupBox Width="350" Height="400"
                           x:Name="GameTypeView" Header="Game Types">
-                    <ListView x:Name="availableGameTypes_lv" ItemsSource="{Binding}">
+                    <ListView x:Name="availableGameTypes_lv" ItemsSource="{Binding}" IsSynchronizedWithCurrentItem="True"> 
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <Expander Header="{Binding DisplayName}">
@@ -125,7 +123,8 @@
                                         </ListView>
                                         <Button x:Name="addCommand" Content="+" />
                                         <ListView ItemsSource="{Binding SpecificMaps}" AllowDrop="True" 
-                                                  Name="specificMaps_lb">
+                                                  Name="specificMaps_lb" IsSynchronizedWithCurrentItem="True"
+                                                  Drop="specificMaps_drop">
                                             <ListView.ItemTemplate>
                                                 <DataTemplate>
                                                     <Grid>
@@ -140,7 +139,6 @@
                                                 </DataTemplate>
                                             </ListView.ItemTemplate>
                                         </ListView>
-                                        <Button x:Name="addSpecificMap" Content="+" />
                                     </StackPanel>
                                 </Expander>
                             </DataTemplate>
@@ -148,8 +146,6 @@
                     </ListView>
                 </GroupBox>
             </StackPanel>
-
-            <StackPanel />
         </StackPanel>
     </ScrollViewer>
 </StackPanel>

@@ -42,7 +42,7 @@ namespace DewManager
                         _mapsList.Add(new Map("Standoff", filename));
                         break;
                     case "shrine.map":
-                        _mapsList.Add(new Map("Standoff", filename));
+                        _mapsList.Add(new Map("Sandtrap", filename));
                         break;
                     case "s3d_turf.map":
                         _mapsList.Add(new Map("Icebox", filename));

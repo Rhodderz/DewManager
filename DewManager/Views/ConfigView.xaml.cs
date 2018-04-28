@@ -1,7 +1,8 @@
 ﻿using System.Diagnostics;
+using System.Windows;
 using System.Windows.Controls;
-using DewManager.Configs;
-using MahApps.Metro.Controls;
+using System.Windows.Input;
+using Prism.Commands;
 
 namespace DewManager.Views
 {
@@ -45,6 +46,14 @@ namespace DewManager.Views
             
             //Setup Gametypes
             availableGameTypes_lv.ItemsSource = config.VotingConfig.Types;
+        }
+
+        private void DeleteDefaultMapItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button) sender;
+            Map context = (Map)button.DataContext;
+            Debug.WriteLine(context.Name);
+            config.VotingConfig.Maps.RemoveAt(config.VotingConfig.Maps.IndexOf(context));
         }
     }
 }

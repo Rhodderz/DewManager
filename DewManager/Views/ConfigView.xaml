@@ -63,7 +63,7 @@
                 <GroupBox Width="300" Height="400"
                           x:Name="MapsView" Header="Maps">
                     <DockPanel>
-                        <StackPanel Orientation="Vertical" Width="125" DockPanel.Dock="Left">
+                        <StackPanel Orientation="Vertical" Width="130" DockPanel.Dock="Left">
                             <Label Content="Available Maps" Target="{Binding ElementName=availableMaps_lb}"
                                    FontWeight="Bold" />
                             <ListBox x:Name="availableMaps_lb" ItemsSource="{Binding}"
@@ -76,7 +76,7 @@
                                 </ListBox.ItemTemplate>
                             </ListBox>
                         </StackPanel>
-                        <StackPanel Orientation="Vertical" Width="125" DockPanel.Dock="Left">
+                        <StackPanel Orientation="Vertical" Width="130" DockPanel.Dock="Right">
                             <Label Content="Default Maps" Target="{Binding ElementName=defaultMaps_lb}"
                                    FontWeight="Bold" />
                             <ListBox x:Name="defaultMaps_lb" ItemsSource="{Binding}" Height="340"
@@ -84,7 +84,15 @@
                                      ScrollViewer.CanContentScroll="True">
                                 <ListBox.ItemTemplate>
                                     <DataTemplate>
-                                        <TextBlock Text="{Binding Name}" />
+                                        <Grid>
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                                                <TextBlock Text="{Binding Name}" />
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                                <Button Content="X" Width="25" Padding="0" BorderThickness="0"
+                                                        Click="DeleteDefaultMapItem_OnClick"/>
+                                            </StackPanel>
+                                        </Grid>
                                     </DataTemplate>
                                 </ListBox.ItemTemplate>
                             </ListBox>
@@ -103,12 +111,12 @@
                                                 <DataTemplate>
                                                     <StackPanel Orientation="Horizontal">
                                                         <Label Content="{Binding Name}" />
-                                                        <TextBox Text="{Binding Value}"/>
+                                                        <TextBox Text="{Binding Value}" />
                                                     </StackPanel>
                                                 </DataTemplate>
                                             </ListView.ItemTemplate>
                                         </ListView>
-                                        <Button x:Name="addCommand" Content="+"/>
+                                        <Button x:Name="addCommand" Content="+" />
                                         <ListView ItemsSource="{Binding SpecificMaps}">
                                             <ListView.ItemTemplate>
                                                 <DataTemplate>
@@ -116,7 +124,7 @@
                                                 </DataTemplate>
                                             </ListView.ItemTemplate>
                                         </ListView>
-                                        <Button x:Name="addSpecificMap" Content="+"/>
+                                        <Button x:Name="addSpecificMap" Content="+" />
                                     </StackPanel>
                                 </Expander>
                             </DataTemplate>

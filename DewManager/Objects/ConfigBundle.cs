@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.ObjectModel;
 using System.IO;
 using DewManager.Configs;
 
@@ -10,8 +11,8 @@ namespace DewManager
         public DewritoConfig DewritoConfig{ get; set; }
         public Voting VotingConfig { get; set; }
         public ObjectLocations ObjectLocations { get; set; }
-        public ArrayList AvailableMaps { get; set; }
-        public ArrayList AvailableGameTypes { get; set; }
+        public ObservableCollection<Map> AvailableMaps { get; set; }
+        public ObservableCollection<GameType> AvailableGameTypes { get; set; }
 
         public ConfigBundle(int index, DewritoConfig dewritoConfig, Voting votingConfig, ObjectLocations objectLocations)
         {
@@ -30,7 +31,7 @@ namespace DewManager
 
         public void GetAvailableGameTypes()
         {
-            AvailableGameTypes = new ArrayList();
+            AvailableGameTypes = new ObservableCollection<GameType>();
             
             string[] variantFolderList = Directory.GetDirectories(ObjectLocations.getVariantsFolder_Path());
             foreach (var folderpath in variantFolderList)

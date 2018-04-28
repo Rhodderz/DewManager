@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
@@ -11,17 +12,17 @@ namespace DewManager
         //Seperate class than the rest of the loaders as maybe oneday i can get more info from the maps
         
         private ObjectLocations _objLocations;
-        private ArrayList _mapsList;
+        private ObservableCollection<Map> _mapsList;
 
         public Maps()
         {
-            _mapsList = new ArrayList();
+            _mapsList = new ObservableCollection<Map>();
         }
 
         public Maps(ObjectLocations objLocations)
         {
             this._objLocations = objLocations;
-            _mapsList = new ArrayList();
+            _mapsList = new ObservableCollection<Map>();
 
             AddDefaultMaps();
             AddCustomMaps();
@@ -91,7 +92,7 @@ namespace DewManager
             }
         }
 
-        public ArrayList GetMaps()
+        public ObservableCollection<Map> GetMaps()
         {
             return _mapsList;
         }

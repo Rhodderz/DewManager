@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace DewManager
 {
     public class Voting
     {
-        public IList<Map> Maps { get; set; }
-        public IList<GameType> Types { get; set; }
+        public ObservableCollection<Map> Maps { get; set; }
+        public ObservableCollection<GameType> Types { get; set; }
     }
 }

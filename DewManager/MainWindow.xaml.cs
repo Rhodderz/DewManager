@@ -11,6 +11,7 @@ using System.Windows.Markup;
 using DewManager.Configs;
 using DewManager.Views;
 using MahApps.Metro.Controls;
+using MahApps.Metro.Controls.Dialogs;
 using Ookii.Dialogs.Wpf;
 
 namespace DewManager
@@ -36,15 +37,20 @@ namespace DewManager
 
         private void FileMenu_Open_Click(object sender, RoutedEventArgs e)
         {
-            VistaFolderBrowserDialog dialog =
-                new VistaFolderBrowserDialog
-                {
-                    Description = "Select the root Halo Online folder for your server",
-                    UseDescriptionForTitle = true
-                };
-            dialog.ShowDialog(this);
+            string path = getEDDir();
 
-            _objectLocations = new ObjectLocations(dialog.SelectedPath);
+            while (Directory.GetFiles(path, "eldorado.exe").Length == 0)
+            {
+                MessageBox.Show(
+                    "This doesnt look like the ED root folder!",
+                    "Please make sure you select the root folder of Eldewrito!",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
+
+                path = getEDDir();
+            }
+            
+            _objectLocations = new ObjectLocations(path);
             
             Debug.WriteLine("Eldewrito location: " + _objectLocations.getRootDir_Path());
             
@@ -79,6 +85,19 @@ namespace DewManager
         private void LoadFiles()
         {
             _maps = new Maps(_objectLocations);
+        }
+
+        private string getEDDir()
+        {
+            VistaFolderBrowserDialog dialog =
+                new VistaFolderBrowserDialog
+                {
+                    Description = "Select the root Halo Online folder for your server",
+                    UseDescriptionForTitle = true
+                };
+            dialog.ShowDialog(this);
+
+            return dialog.SelectedPath;
         }
     }
 }

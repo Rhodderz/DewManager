@@ -90,7 +90,7 @@ namespace DewManager.Views
                         element = VisualTreeHelper.GetParent(element) as UIElement;
                     }
 
-                    if (element == source)
+                    if (Equals(element, source))
                     {
                         return null;
                     }
@@ -110,6 +110,10 @@ namespace DewManager.Views
             ListBox parent = (ListBox) sender;
             Map data = (Map)e.Data.GetData(typeof(Map));
             ObservableCollection<Map> parentOC = (ObservableCollection<Map>) parent.ItemsSource;
+            if (parentOC == null)
+            {
+                parentOC = new ObservableCollection<Map>();
+            }
             if (parentOC.Any(map => map.Name == data.Name))
             {
                 Debug.WriteLine(data.Name + " ::: Already Exists");
@@ -126,6 +130,10 @@ namespace DewManager.Views
             ListBox parent = (ListBox) sender;
             Map data = (Map)e.Data.GetData(typeof(Map));
             ObservableCollection<Map> parentOC = (ObservableCollection<Map>) parent.ItemsSource;
+            if (parentOC == null)
+            {
+                parentOC = new ObservableCollection<Map>();
+            }
             if (parentOC.Any(map => map.Name == data.Name))
             {
                 Debug.WriteLine(data.Name + " ::: Already Exists");
@@ -134,6 +142,37 @@ namespace DewManager.Views
             {
                 Debug.WriteLine(data.Name + " ::: Adding");
                 parentOC.Add(data);
+            }
+        }
+
+        private void GameTypesButton_drop(object sender, DragEventArgs e)
+        {
+            Button parent = (Button) sender;
+            
+            if (e.Data.GetData(typeof(Map)) != null)
+            {
+                Map data = (Map)e.Data.GetData(typeof(Map));
+                StackPanel sp = (StackPanel) parent.Parent;
+                ListView specificMapsLV = (ListView)sp.GetChildObjects().OfType<ListView>().First(lv => lv.Name == "specificMaps_lb");
+                ObservableCollection<Map> specificMaps = (ObservableCollection<Map>) specificMapsLV.ItemsSource;
+                
+                if (specificMaps == null)
+                {
+                    specificMaps = new ObservableCollection<Map>();
+                }
+
+                Debug.WriteLine(specificMaps.Count);
+                specificMapsLV.ItemsSource = specificMaps;
+                
+                if (specificMaps.Any(map => map.Name == data.Name))
+                {
+                    Debug.WriteLine("Apparently " + data.Name + " already exists");
+                }
+                else
+                {
+                    Debug.WriteLine("Apparently " + data.Name + " is now added");
+                    specificMaps.Add(data);
+                }
             }
         }
     }

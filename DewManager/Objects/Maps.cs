@@ -4,6 +4,8 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
+using System.Windows;
+using MahApps.Metro.Controls.Dialogs;
 
 namespace DewManager
 {
@@ -31,6 +33,7 @@ namespace DewManager
         private void AddDefaultMaps()
         {
             string[] mapFileList = Directory.GetFiles(_objLocations.getDefMapsFolder_path(), "*.map");
+            
             foreach (var filepath in mapFileList)
             {
                 Debug.WriteLine("Loading Map: " + filepath);

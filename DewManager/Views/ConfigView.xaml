@@ -121,7 +121,7 @@
                                                 </DataTemplate>
                                             </ListView.ItemTemplate>
                                         </ListView>
-                                        <Button x:Name="addCommand" Content="+" />
+                                        <Button x:Name="addCommand" Content="+" AllowDrop="True" Drop="GameTypesButton_drop"/>
                                         <ListView ItemsSource="{Binding SpecificMaps}" AllowDrop="True" 
                                                   Name="specificMaps_lb" IsSynchronizedWithCurrentItem="True"
                                                   Drop="specificMaps_drop">
